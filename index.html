@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+		<title>Ajax Movie Display App</title>
+	</head>
+	<body>
+		<div class="header">
+			<h1>OMDb Movie Database</h1>
+			<form class="movie-form">
+				<input type="search" id="search-field" placeholder="Search Movie Title" required>
+				<input type="submit" id="search-submit" value="Search">
+			</form>
+			<div id="button-wrapper">
+				<button >Find Random Movies</button>
+			</div>
+		</div>
+
+		<div class="container">
+			<ul id="movie-list"></ul>
+		</div>
+
+		<footer>
+			<div id="spinner"></div>
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+		<script type="text/javascript" src="spin.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>
