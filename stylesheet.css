@@ -24,7 +24,7 @@ body{
 }
 .header{
   color: white;
-  background: #171717;
+  background-color: #171717;
   border-bottom: 8px solid black;
 }
 .header h1{
@@ -40,21 +40,20 @@ body{
   width: 33%; 
   margin-bottom: 30px;
 }
-#movie-list li div p{
+#movie-list li>div>p{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font: 24px/25px "Roboto", Arial, sans-serif;
   color: white;
   margin: 15px 0;
+  cursor: pointer;
 }
 
 #movie-list li>div{
   height: 490px;
   width: 300px;
   margin: 0 auto;
-  cursor: pointer;
-  border: 1px solid red;
 }
 
 .movie-content{
@@ -64,23 +63,24 @@ body{
   position: relative;
 }
 
-.movie-content img{
+.movie-content>img{
   width: 100%;
   height: 100%;
   border: 5px solid white;
   border-radius: 4px;
   vertical-align: top;
+  cursor: pointer;
 }
 
-.movie-content img,
-#movie-list li div p{
+.movie-content>img,
+#movie-list li>div>p{
   transition: all 0.2s ease;
 }
 
-#movie-list li div:hover img{
+.movie-content>img:hover{
   border-color: #00FF80 !important;
 }
-#movie-list li div:hover p{
+#movie-list li>div>p:hover{
   color: #00FF80;
 }
 #button-wrapper{
@@ -117,26 +117,55 @@ footer{
 }
 
 .reduce-size{
-  height: 40% !important;
-  width: 40% !important;
+  height: 50% !important;
+  width: 50% !important;
   border: 2px solid white !important;
+  background-color: #171717
 }
 
 .rating{
-  width: 60%;
-  height: 40%;
-  background-color: black;
-  display: inline-block;
-  vertical-align: top;
-  position: absolute;
+  width: 50%;
+  height: 50%;
   top: 0;
   right: 0;
+  padding: 0 10px;
+  font: 22px/22px "Roboto", Arial, sans-serif;
+}
+.imbd img{
+  height: 40px;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+.genre,
+.synopsis{
+  font-size: 18px;
+}
+.imbd{
+  line-height: 40px;
 }
 .synopsis{
   width: 100%;
-  height: 60%;
-  background-color: white;
-  vertical-align: top;
-  position: absolute;
+  height: 50%;
   bottom: 0;
+  font-family: "Roboto", Arial, sans-serif;
+  padding: 15px;
+  overflow: hidden;
+}
+.synopsis div{
+  height: 100%;
+  margin: 0;
+}
+.synopsis,
+.rating{
+  position: absolute;
+  vertical-align: top;
+  background-color: #171717;
+  color: white;
+}
+
+.synopsis h2{
+  margin: 0;
+  padding-bottom: 15px;
 }

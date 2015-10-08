@@ -3,6 +3,7 @@ var movieList = [];
 var MoviePrototype = {
 	init: function(id){
 		this.id = id;
+		this.retrieved = false;
 	},
 	get_id: function(){
 		return this.id;
@@ -22,12 +23,17 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#movie-list').delegate('.movie-content img', 'click', function(event){
+	$('#movie-list').delegate('.movie-content>img', 'click', function(event){
 		$(this).toggleClass('reduce-size');
 		var movie_index = $(event.target).closest('li').index('li');
 		var $el = $(event.target).closest('.movie-content');
 		console.log(movie_index);
-		get_movie_content(movie_index, $el);
+		if(movieList[movie_index].retrieved === false){
+			get_movie_content(movie_index, $el);
+			movieList[movie_index].retrieved = true;
+		}else{
+			$(this).siblings('.rating, .synopsis').fadeToggle('fast');
+		}	
 	});
 })
 .ajaxStart(function() {
@@ -108,8 +114,10 @@ var get_random_movie = function(){
 
 var get_movie_content = function(index, el){
 	var id = get_imbdID(index);
-	var onSuccess = function(){
-		el.append($('<div class="rating" style="display: inline-block"></div><div class="synopsis"></div>').fadeIn());
+	var onSuccess = function(movie){
+		el.append($('<div class="rating"></div><div class="synopsis"></div>').fadeIn());
+		el.children('.rating').append('<p class="year">'+movie.Year+'</p><p class="genre">'+movie.Genre+'</p><div class="imbd"><img src="icons/imdb.png">'+movie.imdbRating+'</div>');
+		el.children('.synopsis').append('<div><h2>Synopsis</h2>'+movie.Plot+'</div>');
 	}
 	ajax_call('i', id, onSuccess);
 }
@@ -130,6 +138,7 @@ var clear_list = function(){
 	while (myNode.firstChild) {
 	    myNode.removeChild(myNode.firstChild);
 	}
+	movieList = [];
 };
 
 
