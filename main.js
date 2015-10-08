@@ -60,7 +60,7 @@ var ajax_call = function(p, val, onSuccess){
 	data[p] = val;
 	$.ajax({
 		type: 'GET',
-		url: 'http://www.omdbapi.com/?',
+		url: 'https://www.omdbapi.com/?',
 		data,
 		success: function(movies){
 			console.log(movies);
