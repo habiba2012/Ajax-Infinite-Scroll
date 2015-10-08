@@ -40,36 +40,52 @@ body{
   width: 33%; 
   margin-bottom: 30px;
 }
-#movie-list li p{
+#movie-list li div p{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font: 24px/26px "Roboto", Arial, sans-serif;
+  font: 24px/25px "Roboto", Arial, sans-serif;
   color: white;
-}
-#movie-list li p:hover{
-  color: #00FF80;
+  margin: 15px 0;
 }
 
-#movie-list li p,
-#movie-list li img{
+#movie-list li>div{
+  height: 490px;
   width: 300px;
   margin: 0 auto;
   cursor: pointer;
+  border: 1px solid red;
 }
-#movie-list li img{
-  height: 445px;
+
+.movie-content{
+  height: 435px;
+  width: 100%;
+  text-align: left;
+  position: relative;
+}
+
+.movie-content img{
+  width: 100%;
+  height: 100%;
   border: 5px solid white;
   border-radius: 4px;
-  transition: all 0.3s ease;
+  vertical-align: top;
 }
-#movie-list li img:hover{
-  border-color: #00FF80;
+
+.movie-content img,
+#movie-list li div p{
+  transition: all 0.2s ease;
+}
+
+#movie-list li div:hover img{
+  border-color: #00FF80 !important;
+}
+#movie-list li div:hover p{
+  color: #00FF80;
 }
 #button-wrapper{
   margin: 15px;
 }
-
 footer{
   position: fixed;
   bottom: 0px;
@@ -98,4 +114,29 @@ footer{
 #search-submit:hover,
 #button-wrapper button:hover{
   background-color: #00FF80;
+}
+
+.reduce-size{
+  height: 40% !important;
+  width: 40% !important;
+  border: 2px solid white !important;
+}
+
+.rating{
+  width: 60%;
+  height: 40%;
+  background-color: black;
+  display: inline-block;
+  vertical-align: top;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.synopsis{
+  width: 100%;
+  height: 60%;
+  background-color: white;
+  vertical-align: top;
+  position: absolute;
+  bottom: 0;
 }
