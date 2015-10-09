@@ -57,7 +57,7 @@ var create_poster = function(movie){
 	var newMovie = Object.create(MoviePrototype);
 	newMovie.init(movie.imdbID);
 	movieList.push(newMovie);
-	return $('<li style="display: inline-block"><div><p title="' + movie.Title + '">' + movie.Title + '</p><div class="movie-content"><img src='+ img + '></div></div></li>').fadeIn();
+	return $('<li><div><p title="' + movie.Title + '">' + movie.Title + '</p><div class="movie-content"><img src='+ img + '></div></div></li>').fadeIn();
 }
 
 // p: the search parameter(i,t,s)
@@ -86,7 +86,7 @@ var ajax_call = function(p, val, onSuccess){
 var search_for_movie = function(){
 	var search = $('#search-field');
 	var onSuccess = function(movies){
-		for(var i = 0; i < 9; i++){
+		for(var i = 0; i < 10; i++){
 			if(typeof movies.Search === 'undefined')
 				break;
 			$('#movie-list').append(create_poster(movies.Search[i]));
