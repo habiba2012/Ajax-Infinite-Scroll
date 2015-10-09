@@ -14,6 +14,11 @@ $(document).ready(function(){
 	$('footer').hide();
 	search_for_movie();
 
+	$('#scrollToTop').click(function(){
+		$('html, body').animate({scrollTop : 0},600);
+		return false;
+	});
+
 	$('#button-wrapper button').click(function(){
 		get_num_of_movies(9);
 		$(window).scroll(function(){
@@ -21,13 +26,14 @@ $(document).ready(function(){
 				get_num_of_movies(9);	
 			}
 		});
+		scroll_to_top();
 	});
 
 	$('#movie-list').delegate('.movie-content>img', 'click', function(event){
 		$(this).toggleClass('reduce-size');
 		var movie_index = $(event.target).closest('li').index('li');
 		var $el = $(event.target).closest('.movie-content');
-		console.log(movie_index);
+		//console.log(movie_index);
 		if(movieList[movie_index].retrieved === false){
 			get_movie_content(movie_index, $el);
 			movieList[movie_index].retrieved = true;
@@ -35,6 +41,8 @@ $(document).ready(function(){
 			$(this).siblings('.rating, .synopsis').fadeToggle('fast');
 		}	
 	});
+
+
 })
 .ajaxStart(function() {
 	$('footer').show();
@@ -63,7 +71,7 @@ var ajax_call = function(p, val, onSuccess){
 		url: 'https://www.omdbapi.com/?',
 		data,
 		success: function(movies){
-			console.log(movies);
+			//console.log(movies);
 			onSuccess(movies);
 		},
 		error: function( xhr, status, errorThrown ) {
@@ -87,19 +95,23 @@ var search_for_movie = function(){
 	$('.movie-form').submit(function(event){
 		if( search.val().length > 0){	
 			clear_list();
-			$(window).unbind('scroll');
 			ajax_call('s', search.val(), onSuccess);
 			search.val("");
 			event.preventDefault();
 		}
+		$(window).unbind('scroll');
+		scroll_to_top();
 	});
+
+
+
 };
 
 var get_random_movie = function(){
 	var rand = ""+ (Math.floor(Math.random()*7000000));
 	var pad = "0000000";
 	var id = "tt"+pad.substring(0,pad.length-rand.length)+rand;
-	console.log(id);
+	//console.log(id);
 
 	var onSuccess = function(movie){
 		if(typeof movie.Title !== 'undefined'){
@@ -141,6 +153,17 @@ var clear_list = function(){
 	movieList = [];
 };
 
+var scroll_to_top = function(){
+	$(window).scroll(function(){
+		if($(window).scrollTop() > 100){
+			$('#scrollToTop').fadeIn();
+		}else{
+			$('#scrollToTop').fadeOut();
+		}
+	});
+}
+
+
 
 
 
@@ -151,7 +174,7 @@ var opts = {
 , radius: 42 // The radius of the inner circle
 , scale: 0.5 // Scales overall size of the spinner
 , corners: 1 // Corner roundness (0..1)
-, color: '#FFF' // #rgb or #rrggbb or array of colors
+, color: '#000' // #rgb or #rrggbb or array of colors
 , opacity: 0.25 // Opacity of the lines
 , rotate: 0 // The rotation offset
 , direction: 1 // 1: clockwise, -1: counterclockwise
@@ -161,7 +184,7 @@ var opts = {
 , zIndex: 2e9 // The z-index (defaults to 2000000000)
 , className: 'spinner' // The CSS class to assign to the spinner
 , top: '50%' // Top position relative to parent
-, left: '95%' // Left position relative to parent
+, left: '50%' // Left position relative to parent
 , shadow: false // Whether to render a shadow
 , hwaccel: false // Whether to use hardware acceleration
 , position: 'absolute' // Element positioning
