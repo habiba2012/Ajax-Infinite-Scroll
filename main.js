@@ -22,7 +22,7 @@ $(document).ready(function(){
 	$('#button-wrapper button').click(function(){
 		get_num_of_movies(9);
 		$(window).scroll(function(){
-			if($(window).scrollTop() == $(document).height() - $(window).height()) {
+			if($(window).scrollTop()+ $(window).height() > $(document).height() - 10) {
 				get_num_of_movies(9);	
 			}
 		});

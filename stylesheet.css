@@ -182,8 +182,7 @@ footer{
 #scrollToTop{
   width: 50px;
   height: 50px;
-  line-height: 45px;
-  font-size: 60px;
+  font: 20px/45px "Roboto", Arial, sans-serif;
   cursor: pointer;
   position: fixed;
   right: 10px;
