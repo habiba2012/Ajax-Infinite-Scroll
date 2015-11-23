@@ -42,6 +42,9 @@ $(document).ready(function(){
 		}	
 	});
 
+	$('.btn').click(function(){
+		$('.header').addClass('move-header');
+	});
 
 })
 .ajaxStart(function() {
@@ -71,7 +74,7 @@ var ajax_call = function(p, val, onSuccess){
 		url: 'https://www.omdbapi.com/?',
 		data,
 		success: function(movies){
-			//console.log(movies);
+			console.log(movies);
 			onSuccess(movies);
 		},
 		error: function( xhr, status, errorThrown ) {
